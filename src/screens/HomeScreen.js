@@ -347,7 +347,8 @@ export default function HomeScreen({navigation}) {
       paddingHorizontal: 8,
       color: 'black',
       borderWidth: 1,
-      borderColor: '#ccc'
+      borderColor: '#ccc',
+      borderRadius: 7,
     },
     dropDownStyle: {
       margin: 10,

@@ -16,7 +16,8 @@ import {
   TouchableOpacity,
   TextInput,
   Modal,
-  ToastAndroid
+  ToastAndroid,
+  Vibration
 } from 'react-native'
 import ImportedContext from '../Context/ContextAPI'
 import { useContext } from 'react'
@@ -77,6 +78,7 @@ export default function Download({navigation}) {
 
   const [deleteId, setDeleteId] = useState()
   const deleteRationCard = async (id) => {
+    Vibration.vibrate(100)
     setDeleteId(id)
     setModalVisible(true)
   }
@@ -112,8 +114,9 @@ export default function Download({navigation}) {
     const fileName = allFiles[deleteId].trim()
     const path = `file://${dirPath}/${fileName}`
     await RNFS.unlink(path)
-    setAllFiles((prev) => prev.filter(val => val.trim()!==fileName))
-    setFilter((prev) => prev.filter(val => val.trim()!==fileName))
+    setAllFiles((prev) => prev.filter(val => val.trim() !== fileName))
+    setFilter((prev) => prev.filter(val => val.trim() !== fileName))
+
     if (closeThis !== null && (deleteId === closeThis)) {
       closeRef.close()
     }
